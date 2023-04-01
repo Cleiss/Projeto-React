@@ -8,7 +8,7 @@ const userController = require('../controllers/user.controller')
     //Nome (Identificador da rota; '/nome')
     //Function (callback)
 
-router.post ('/', userController.create)
+router.post ('/', userController.perfil)
 
 router.get ('/', userController.read)
 
