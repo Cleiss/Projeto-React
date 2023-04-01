@@ -23,7 +23,7 @@ const create = (req, res) => {
 
 const read = (req, res) => {
 
-    res.send('')
+    res.send('rota ok')
 }
 
 module.exports = {create, read}
