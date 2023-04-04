@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const connectDB = () => {
 
-    console.log('esperando DB')
+    console.log('aguardando conexão com Mongo...')
 
     mongoose.connect(
         "mongodb+srv://cleis:cleiton31@cluster0.oezan0z.mongodb.net/?retryWrites=true&w=majority", 
