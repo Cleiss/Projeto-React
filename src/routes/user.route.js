@@ -12,4 +12,6 @@ router.post ('/', userController.perfil)
 
 router.get ('/', userController.read)
 
+router.get ('/:id', userController.findId)
+
 module.exports = router
