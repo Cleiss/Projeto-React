@@ -16,8 +16,6 @@ const perfil = async (req, res) => {
         return res.status(400).send({message: "erro ao criar usuário"})
     }
 
-
-
     res.status(201).send({
         
         user: {
