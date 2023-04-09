@@ -1,7 +1,7 @@
 const route = require ('express')
 const router = route()
-
 const userController = require('../controllers/user.controller')
+const {validId, validUser} = require ('../Middleware/global.middlewares')
 
 //ROTA
     //Métodos HTTP (CRUD)
@@ -12,8 +12,8 @@ router.post ('/', userController.criar)
 
 router.get ('/', userController.read)
 
-router.get ('/:id', userController.findId)
+router.get ('/:id', validId, validUser, userController.findId)
 
-router.patch('/:id', userController.updtId)
+router.patch('/:id', validId, validUser, userController.updtId)
 
 module.exports = router

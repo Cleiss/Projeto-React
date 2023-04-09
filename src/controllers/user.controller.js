@@ -1,5 +1,4 @@
 const userService = require ("../services/user.service")
-const mongoose = require ('mongoose')
 
 const criar = async (req, res) => {
 
@@ -47,17 +46,7 @@ const findId = async (req, res) => {
 
     const id = req.params.id
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-
-        return res.status(400).send({message: 'id de usuário inválido'})
-    }
-
     const usuario = await userService.findIdservice(id)
-
-    if (!usuario) {
-        
-        return res.status(400).send({message: 'id de usuário não encontrado'})
-    }
 
     res.send(usuario)
 }
@@ -72,18 +61,6 @@ const updtId = async (req, res) => {
     }
 
     const id = req.params.id
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-
-        return res.status(400).send({message:'id de usuário inválido'})
-    }
-
-    const usuario = await userService.findIdservice(id)
-
-    if (!usuario) {
-
-        return res.status(400).send({message:'id de usuário não encontrado'})
-    }
 
     await userService.updt (
         id,
