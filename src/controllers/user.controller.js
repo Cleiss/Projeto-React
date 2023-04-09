@@ -1,7 +1,7 @@
 const userService = require ("../services/user.service")
 const mongoose = require ('mongoose')
 
-const perfil = async (req, res) => {
+const criar = async (req, res) => {
 
     const {nome, username, email, senha, foto, background} = req.body
     
@@ -62,4 +62,41 @@ const findId = async (req, res) => {
     res.send(usuario)
 }
 
-module.exports = {perfil, read, findId}
+const updtId = async (req, res) => {
+
+    const {nome, username, email, senha, foto, background} = req.body
+
+    if (!nome && !username && !email && !senha && !foto && !background) {
+
+        res.status(400).send({message:'preencha pelo menos um campo para atualizar'})
+    }
+
+    const id = req.params.id
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+
+        return res.status(400).send({message:'id de usuário inválido'})
+    }
+
+    const usuario = await userService.findIdservice(id)
+
+    if (!usuario) {
+
+        return res.status(400).send({message:'id de usuário não encontrado'})
+    }
+
+    await userService.updt (
+        id,
+        nome,
+        username, 
+        email, 
+        senha, 
+        foto, 
+        background
+    )
+
+    res.status(201).send('usuário atualizado com sucesso!')
+    
+}
+
+module.exports = {criar, read, findId, updtId}

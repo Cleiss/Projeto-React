@@ -6,4 +6,6 @@ const findAll = () => User.find()
 
 const findIdservice = (id) => User.findById(id)
 
-module.exports = {create, findAll, findIdservice}
+const updt = (id, nome, username, email, senha, foto, background) => User.findOneAndUpdate({_id: id}, {nome, username, email, senha, foto, background})
+
+module.exports = {create, findAll, findIdservice, updt}
