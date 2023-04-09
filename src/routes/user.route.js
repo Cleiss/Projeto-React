@@ -1,7 +1,7 @@
 const route = require ('express')
 const router = route()
 const userController = require('../controllers/user.controller')
-const {validId, validUser} = require ('../Middleware/global.middlewares')
+const {validId, validUser} = require ('../middleware/global.middlewares')
 
 //ROTA
     //Métodos HTTP (CRUD)
