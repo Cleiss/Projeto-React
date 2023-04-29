@@ -1,4 +1,5 @@
-const mongoose = require ('mongoose')
+const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 
 /*o schema é um método do mongoose e define como os documentos serão criados no bd*/
 const UserSchema = new mongoose.Schema(
@@ -18,7 +19,8 @@ const UserSchema = new mongoose.Schema(
         },
         senha: {
             type: String,
-            required: true
+            required: true,
+            select: false
         },
         foto: {
             type: String,
@@ -33,6 +35,14 @@ const UserSchema = new mongoose.Schema(
     }
 )
 
-const User = mongoose.model ("User" /*nome dado ao Schema*/, UserSchema)
+/*função pre("save", função a ser executada) = antes de salvar algo, execute a função.
+    neste caso, antes de salvar a senha, criptografe-a*/
+UserSchema.pre("save", async function (next) {
+    this.senha = await bcrypt.hash(this.senha, 10) /* hash() criptografa a senha; 10 = quant. de salt/rodadas*/
+
+    next()
+})
+
+const User = mongoose.model("User" /*nome dado ao Schema*/, UserSchema)
 
 module.exports = User

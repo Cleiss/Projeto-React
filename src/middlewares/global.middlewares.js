@@ -1,32 +1,45 @@
-const mongoose = require ('mongoose')
+const mongoose = require('mongoose')
 const userService = require('../services/user.service')
 
 const validId = (req, res, next) => {
 
-    const id = req.params.id
+    try {
+        const id = req.params.id
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
 
-        return res.status(400).send({message: 'id de usuário inválido'})
+            return res.status(400).send({ message: 'id de usuário inválido' })
+        }
+
+        next()
     }
-
-    next()
+    catch (erro) {
+        res.status(500).send({ message: erro })
+    }
 
 }
 
 const validUser = async (req, res, next) => {
 
-    const id = req.params.id
+    try {
+        const id = req.params.id
 
-    const usuario = await userService.findIdservice(id)
+        const usuario = await userService.findIdservice(id)
 
-    if (!usuario) {
+        if (!usuario) {
 
-        return res.status(400).send({message: 'id de usuário não encontrado'})
+            return res.status(400).send({ message: 'usuário não encontrado' })
+        }
+
+        req.id = id
+        req.user = usuario
+
+        next()
     }
-
-    next()
+    catch (erro) {
+        res.status(500).send({ message: erro })
+    }
 
 }
 
-module.exports = {validId, validUser}
+module.exports = { validId, validUser }
