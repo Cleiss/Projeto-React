@@ -1,7 +1,7 @@
-const route = require('express')
+import route from 'express'
 const router = route()
-const userController = require('../controllers/user.controller')
-const { validId, validUser } = require('../middlewares/global.middlewares')
+import userController from '../controllers/user.controller.js'
+import { validId, validUser } from '../middlewares/global.middlewares.js'
 
 //ROTA
 //Métodos HTTP (CRUD)
@@ -16,4 +16,4 @@ router.get('/:id', validId, validUser, userController.findId)
 
 router.patch('/:id', validId, validUser, userController.updtId)
 
-module.exports = router
+export default router

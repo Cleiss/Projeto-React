@@ -1,11 +1,10 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const connectDB = () => {
 
     console.log('aguardando conexão com Mongo...')
 
-    mongoose.connect(
-        "mongodb+srv://cleis:cleiton31@cluster0.oezan0z.mongodb.net/?retryWrites=true&w=majority",
+    mongoose.connect( process.env.MONGODB_URI, /*dotenv serve para proteção de dados sensíveis*/
         { useNewUrlParser: true, useUnifiedTopology: true }
     )
         .then(() => {
@@ -18,4 +17,4 @@ const connectDB = () => {
         })
 }
 
-module.exports = connectDB
+export default connectDB

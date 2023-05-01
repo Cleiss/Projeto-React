@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
+import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
 
 /*o schema é um método do mongoose e define como os documentos serão criados no bd*/
 const UserSchema = new mongoose.Schema(
@@ -45,4 +45,4 @@ UserSchema.pre("save", async function (next) {
 
 const User = mongoose.model("User" /*nome dado ao Schema*/, UserSchema)
 
-module.exports = User
+export default User

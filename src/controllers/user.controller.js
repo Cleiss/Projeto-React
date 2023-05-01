@@ -1,4 +1,4 @@
-const userService = require("../services/user.service")
+import userService from "../services/user.service.js"
 
 
 const criar = async (req, res) => {
@@ -100,4 +100,4 @@ const updtId = async (req, res) => {
 
 }
 
-module.exports = { criar, read, findId, updtId }
+export default { criar, read, findId, updtId }
