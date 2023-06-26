@@ -12,7 +12,7 @@ const login = async (req, res) => {
             return res.status(404).send({ message: 'senha ou usuário inválido' })
         }
 
-        const senhavalida = await bcrypt.compare(senha, user.senha)
+        const senhavalida = bcrypt.compareSync(senha, user.senha)
 
         if (!senhavalida) {
             return res.status(400).send({ message: 'senha ou usuário inválido' })
@@ -20,7 +20,7 @@ const login = async (req, res) => {
 
         console.log(senhavalida)
 
-        res.send('login ok')
+        res.send('Login Ok')
     }
     catch (erro) {
 
