@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt'
-import loginService from '../services/auth.service.js'
+import {loginService, generateToken} from '../services/auth.service.js'
 
 const login = async (req, res) => {
 
@@ -12,15 +12,16 @@ const login = async (req, res) => {
             return res.status(404).send({ message: 'senha ou usuário inválido' })
         }
 
-        const senhavalida = await bcrypt.compare(senha, user.senha)
+        const senhavalida = bcrypt.compareSync(senha, user.senha)
 
         if (!senhavalida) {
             return res.status(400).send({ message: 'senha ou usuário inválido' })
         }
 
-        console.log(senhavalida)
+        const token = generateToken(user.id)
 
-        res.send('login ok')
+        res.send({token}) /* é enviado como objeto (será visto como json) ao client para que guarde a sessão */
+
     }
     catch (erro) {
 
