@@ -1,7 +1,7 @@
 import express from 'express'
 import connectDB from './src/database/db.js'
 const app = express()
-const port = process.env.PORT || 5000 /* process.env.PORT é definido pelo servidor*/
+const port = process.env.PORT || 3000 /* process.env.PORT é definido pelo servidor*/
 import dotenv from 'dotenv'
 import authRouter from './src/routes/auth.route.js'
 import userRouter from './src/routes/user.route.js'
