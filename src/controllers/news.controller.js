@@ -5,29 +5,34 @@ const create = async (req, res) => {
     try {
         const {title, text, banner} = req.body
 
-        if(!title || !text|| !banner) {
+        if (!title || !text || !banner) {
             res.status(400).send({
                 message: 'Preencha todos os campos'
             })
         }
 
-        await createService ({
+        await newsService.createService ({
             title,
             text,
             banner,
-            id: 'objectidfake'
+            user: { _id: "642870fe396f38c22071dd7a"}
         })
-        
-        res.send(201)
+
+        res.sendStatus(201)
 
     } catch (erro) {
-        res.status(500).send({message: erro})
+        res.status(500).send({message: erro.message})
     }
 
 }
 
-const findAll = (req, res) => {
-    const news = []
+const findAll = async (req, res) => {
+    const news = await newsService.findAllService()
+
+    if (news.length === 0) {
+        return res.status(400).send({ message: 'não há notícias cadastradas' })
+    }
+    
     res.send(news)
 }
 
