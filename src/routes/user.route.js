@@ -8,7 +8,7 @@ import { validId, validUser } from '../middlewares/global.middlewares.js'
 //Nome (Identificador da rota; '/nome')
 //Function (callback)
 
-router.post('/', userController.criar)
+router.post('/', userController.create)
 
 router.get('/', userController.read)
 
@@ -17,3 +17,5 @@ router.get('/:id', validId, validUser, userController.findId)
 router.patch('/:id', validId, validUser, userController.updtId)
 
 export default router
+
+/* userController é o nome do 'pacote' que contém as variáveis exportadas */

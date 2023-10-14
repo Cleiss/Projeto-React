@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const NewsSchema = new mongoose.Schema (
     {
@@ -24,7 +24,7 @@ const NewsSchema = new mongoose.Schema (
 
         user: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User" /* refere-se ao schema exportado de User.js */,
+            ref: 'User' /* refere-se ao schema exportado de User.js */,
             required: true
         },
 
@@ -40,6 +40,6 @@ const NewsSchema = new mongoose.Schema (
     }
 )
 
-const News = mongoose.model("News", NewsSchema)
+const News = mongoose.model('News', NewsSchema)
 
 export default News

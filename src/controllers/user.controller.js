@@ -1,7 +1,7 @@
 import userService from "../services/user.service.js"
 
 
-const criar = async (req, res) => {
+const create = async (req, res) => {
 
     try {
         const { nome, username, email, senha, foto, background } = req.body
@@ -100,4 +100,6 @@ const updtId = async (req, res) => {
 
 }
 
-export default { criar, read, findId, updtId }
+export default { create, read, findId, updtId }
+
+/* userService é o nome do 'pacote' que contém as variáveis exportadas */
