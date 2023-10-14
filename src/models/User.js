@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema(
         senha: {
             type: String,
             required: true,
-            select: false
+            select: true
         },
         foto: {
             type: String,
