@@ -38,5 +38,10 @@ const findAll = async (req, res) => {
 
 export default {create, findAll}
 
-/* newsService é o nome do 'pacote' que contém as variáveis exportadas */
+/* 
+    newsService é o nome do 'pacote' que contém as variáveis exportadas.
+    se as variáveis não fossem exportadas como default (utilizando apenas ''export {createService, findAllService }''), 
+    a importação seria ''import {createService, findAllService } from '../services/news.service.js' 
+*/
+
 /* 'await' DEVE ser usado dentro de uma função assíncrona 'async' */
