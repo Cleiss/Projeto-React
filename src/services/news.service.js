@@ -11,7 +11,9 @@ populate = traz informações do argumento que for utilizado. neste caso é 'use
 
 const topNewsService = () => News.findOne().sort({ _id: -1 }).populate('user')
 
+const findByIdService = (id) => News.findById(id).populate('user')
+
 const countNews = () => News.countDocuments()
 /* conta quantos documentos há na collection no BD */
 
-export default { createService, findAllService, countNews, topNewsService }
+export default { createService, findAllService, countNews, topNewsService, findByIdService }
