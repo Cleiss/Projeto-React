@@ -8,6 +8,7 @@ const router = Router()
 
 router.post('/', authMiddleware, newsController.create)
 router.get('/', newsController.findAll)
+router.get('/top', newsController.topNews)
 /* funções create e findAll são criadas em news.controller.js */
 
 export default router

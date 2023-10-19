@@ -9,7 +9,9 @@ skip = de quanto em quanto será o intervalo. começa do offset e vai somando a 
 populate = traz informações do argumento que for utilizado. neste caso é 'user'.
 */
 
+const topNewsService = () => News.findOne().sort({ _id: -1 }).populate('user')
+
 const countNews = () => News.countDocuments()
 /* conta quantos documentos há na collection no BD */
 
-export default { createService, findAllService, countNews }
+export default { createService, findAllService, countNews, topNewsService }
