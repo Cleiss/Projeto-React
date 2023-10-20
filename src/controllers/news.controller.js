@@ -73,7 +73,7 @@ const findAll = async (req, res) => {
                 banner: item.banner,
                 likes: item.likes,
                 comments: item.comments,
-                name: item.user.name,
+                nome: item.user.nome,
                 userName: item.user.username,
                 userFoto: item.user.foto
 
@@ -105,7 +105,7 @@ const topNews = async (req, res) => {
                 banner: news.banner,
                 likes: news.likes,
                 comments: news.comments,
-                name: news.user.name,
+                nome: news.user.nome,
                 userName: news.user.username,
                 userFoto: news.user.foto
             }
@@ -132,7 +132,7 @@ const findById = async (req, res) => {
                 banner: news.banner,
                 likes: news.likes,
                 comments: news.comments,
-                name: news.user.name,
+                nome: news.user.nome,
                 userName: news.user.username,
                 userFoto: news.user.foto
             }
@@ -162,7 +162,7 @@ const searchByTitle = async (req, res) => {
                 banner: item.banner,
                 likes: item.likes,
                 comments: item.comments,
-                name: item.user.name,
+                nome: item.user.nome,
                 userName: item.user.username,
                 userFoto: item.user.foto
 
