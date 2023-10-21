@@ -1,8 +1,6 @@
 import { Router } from 'express'
 import newsController from '../controllers/news.controller.js'
 import authMiddleware from '../middlewares/auth.middleware.js'
-import newsService from '../services/news.service.js'
-
 
 const router = Router()
 
@@ -10,7 +8,9 @@ const router = Router()
 router.post('/', authMiddleware, newsController.create)
 router.get('/', newsController.findAll)
 router.get('/top', newsController.topNews)
-router.get('/search', newsController.searchByTitle)
+router.get('/search', newsController.searchByTitleService)
+router.get('/byuser', authMiddleware, newsController.searchByUserService)
+
 router.get('/:id', authMiddleware, newsController.findById)
 /*
 funções criadas em news.controller.js.

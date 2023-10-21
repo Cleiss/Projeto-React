@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const NewsSchema = new mongoose.Schema (
+const NewsSchema = new mongoose.Schema(
     {
         title: {
             type: String,

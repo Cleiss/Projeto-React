@@ -144,11 +144,11 @@ const findById = async (req, res) => {
     }
 }
 
-const searchByTitle = async (req, res) => {
+const searchByTitleService = async (req, res) => {
     try {
         const { title } = req.query
 
-        const news = await newsService.searchByTitle(title)
+        const news = await newsService.searchByTitleService(title)
 
         if (news.length === 0) {
             res.status(400).send({ message: 'não há postagem com esse título' })
@@ -175,8 +175,38 @@ const searchByTitle = async (req, res) => {
     }
 }
 
+const searchByUserService = async (req, res) => {
+    try {
+        const id = req.userId
+        /* 
+        userId vem do middleware de auth através de news.route.js
+        o id não está destruturado pq é o id do usuário, não da notícia.
+        */
 
-export default { create, findAll, topNews, findById, searchByTitle }
+        const news = await newsService.searchByUserService(id)
+
+        res.send({
+            results: news.map((item) => ({
+                id: item._id,
+                title: item.title,
+                text: item.text,
+                banner: item.banner,
+                likes: item.likes,
+                comments: item.comments,
+                nome: item.user.nome,
+                userName: item.user.username,
+                userFoto: item.user.foto
+
+            }))
+        })
+    }
+    catch (erro) {
+        res.send(500).send({ message: erro.message })
+    }
+}
+
+
+export default { create, findAll, topNews, findById, searchByTitleService, searchByUserService }
 
 /* 
     newsService é o nome do 'pacote' que contém as variáveis exportadas.
