@@ -16,9 +16,6 @@ const findByIdService = (id) => News.findById(id).populate('user')
 const searchByTitleService = (title) => News.find({
     title: { $regex: `${title || ""}`, $options: "i" }
 }).sort({ _id: -1 }).populate('user')
-
-const searchByUserService = (id) => News.find({ user: id }).sort({ _id: -1 }).populate('user')
-
 /*
 ler sobre regex!
 regex acelera a busca no BD. neste caso faz a busca pelo title completo ou parte dele.
@@ -26,7 +23,11 @@ $options:"i" = case insensitive.
 método find sempre retorna um array.
 */
 
+const searchByUserService = (id) => News.find({ user: id }).sort({ _id: -1 }).populate('user')
+
+const updateService = (id, title, text, banner) => News.findOneAndUpdate({_id: id}, {title, text, banner}, {rawResult: true})
+
 const countNews = () => News.countDocuments()
 /* conta quantos documentos há na collection no BD */
 
-export default { createService, findAllService, countNews, topNewsService, findByIdService, searchByTitleService, searchByUserService }
+export default { createService, findAllService, countNews, topNewsService, findByIdService, searchByTitleService, searchByUserService, updateService }

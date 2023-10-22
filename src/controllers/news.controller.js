@@ -205,8 +205,34 @@ const searchByUserService = async (req, res) => {
     }
 }
 
+const update = async (req, res) => {
+    try {
+        const { title, text, banner } = req.body
+        const { id } = req.params
 
-export default { create, findAll, topNews, findById, searchByTitleService, searchByUserService }
+        if (!title && !text && !banner) {
+            res.status(400).send({ message: 'preencha pelo menos um campo para atualizar' })
+        }
+
+        const news = await newsService.findByIdService(id) /* buscando a postagem pelo id dela */
+        /*console.log(news.user._id)
+        console.log(req.params)
+        console.log(news)*/
+
+        if (String(news.user._id) !== req.userId /* userId vem de auth.middleware.js */) {
+            res.status(400).send({ message: 'atualização não permitida' })
+        }
+
+        await newsService.updateService(id, title, text, banner) /* realiza e aguarda o retorno da atualização */
+
+        res.send({ message: 'postagem atualizada com sucesso!' })
+    }
+    catch (erro) {
+        res.send(500).send({ message: erro.message })
+    }
+}
+
+export default { create, findAll, topNews, findById, searchByTitleService, searchByUserService, update }
 
 /* 
     newsService é o nome do 'pacote' que contém as variáveis exportadas.

@@ -11,6 +11,7 @@ router.get('/top', newsController.topNews)
 router.get('/search', newsController.searchByTitleService)
 router.get('/byuser', authMiddleware, newsController.searchByUserService)
 
+router.patch('/:id', authMiddleware, newsController.update)
 router.get('/:id', authMiddleware, newsController.findById)
 /*
 funções criadas em news.controller.js.
