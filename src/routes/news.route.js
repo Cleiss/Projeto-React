@@ -11,8 +11,10 @@ router.get('/top', newsController.topNews)
 router.get('/search', newsController.searchByTitleService)
 router.get('/byuser', authMiddleware, newsController.searchByUserService)
 
-router.patch('/:id', authMiddleware, newsController.update)
 router.get('/:id', authMiddleware, newsController.findById)
+router.patch('/:id', authMiddleware, newsController.updateService)
+router.delete('/:id', authMiddleware, newsController.deleteService)
+
 /*
 funções criadas em news.controller.js.
 router.get('/:id', newsController.findById) possui um parâmetro e precisa ser declarado por último na listagem 

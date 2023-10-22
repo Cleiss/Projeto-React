@@ -205,7 +205,7 @@ const searchByUserService = async (req, res) => {
     }
 }
 
-const update = async (req, res) => {
+const updateService = async (req, res) => {
     try {
         const { title, text, banner } = req.body
         const { id } = req.params
@@ -232,7 +232,26 @@ const update = async (req, res) => {
     }
 }
 
-export default { create, findAll, topNews, findById, searchByTitleService, searchByUserService, update }
+const deleteService = async (req, res) => {
+    try {
+        const {id} = req.params
+
+        const news = await newsService.findByIdService(id)
+
+        if (String(news.user._id) !== req.userId) {
+            res.status(400).send({message: 'exclusão não permitida'})
+        }
+
+        await newsService.deleteService(id)
+
+        res.send({message: 'postagem excluída com sucesso!'})
+    }
+    catch(erro) {
+        res.status(500).send({message: erro.message})
+    }
+}
+
+export default { create, findAll, topNews, findById, searchByTitleService, searchByUserService, updateService, deleteService }
 
 /* 
     newsService é o nome do 'pacote' que contém as variáveis exportadas.

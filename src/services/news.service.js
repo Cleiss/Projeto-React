@@ -25,9 +25,11 @@ método find sempre retorna um array.
 
 const searchByUserService = (id) => News.find({ user: id }).sort({ _id: -1 }).populate('user')
 
-const updateService = (id, title, text, banner) => News.findOneAndUpdate({_id: id}, {title, text, banner}, {rawResult: true})
+const updateService = (id, title, text, banner) => News.findOneAndUpdate({ _id: id }, { title, text, banner }, { rawResult: true })
+
+const deleteService = (id) => News.findOneAndDelete({ _id: id })
 
 const countNews = () => News.countDocuments()
 /* conta quantos documentos há na collection no BD */
 
-export default { createService, findAllService, countNews, topNewsService, findByIdService, searchByTitleService, searchByUserService, updateService }
+export default { createService, findAllService, countNews, topNewsService, findByIdService, searchByTitleService, searchByUserService, updateService, deleteService }
