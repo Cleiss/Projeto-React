@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import userService from '../services/user.service.js'
+import newsService from '../services/news.service.js'
 
 const validId = (req, res, next) => {
 
@@ -14,7 +15,7 @@ const validId = (req, res, next) => {
         next()
     }
     catch (erro) {
-        res.status(500).send({ message: erro })
+        res.status(500).send({ message: erro.message })
     }
 
 }
@@ -37,8 +38,9 @@ const validUser = async (req, res, next) => {
         next()
     }
     catch (erro) {
-        res.status(500).send({ message: erro })
+        res.status(500).send({ message: erro.message })
     }
+
 
 }
 
