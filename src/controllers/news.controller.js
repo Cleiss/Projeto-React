@@ -257,9 +257,15 @@ const likenews = async (req, res) => {
 
         const userId = req.userId
 
-        const newsliked = await newsService.findByIdService(id, userId) /* id da postagem; userId de quem tá curtindo. */
+        const newsLiked = await newsService.likenews(id, userId) /* id da postagem; userId de quem tá curtindo. */
 
-        console.log(newsliked)
+        if (!newsLiked) {
+            await newsService.deleteNewsLiked(id, userId)
+
+            return res.status(200).send({message: 'curtida removida'})
+        }
+
+        res.status(200).send({message: 'ok!'})
     }
     catch(erro) {
         res.status(500).send({message: erro.message})
