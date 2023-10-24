@@ -23,8 +23,8 @@ const NewsSchema = new mongoose.Schema(
         },
 
         user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User' /* refere-se ao schema exportado de User.js */,
+            type: mongoose.Schema.Types.ObjectId, /* refere-se ao schema exportado de User.js */
+            ref: 'User',
             required: true
         },
 
