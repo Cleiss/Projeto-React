@@ -251,7 +251,22 @@ const deleteService = async (req, res) => {
     }
 }
 
-export default { create, findAll, topNews, findById, searchByTitleService, searchByUserService, updateService, deleteService }
+const likenews = async (req, res) => {
+    try {
+        const {id} = req.params
+
+        const userId = req.userId
+
+        const newsliked = await newsService.findByIdService(id, userId) /* id da postagem; userId de quem tá curtindo. */
+
+        console.log(newsliked)
+    }
+    catch(erro) {
+        res.status(500).send({message: erro.message})
+    }
+}
+
+export default { create, findAll, topNews, findById, searchByTitleService, searchByUserService, updateService, deleteService, likenews }
 
 /* 
     newsService é o nome do 'pacote' que contém as variáveis exportadas.

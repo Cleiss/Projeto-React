@@ -29,7 +29,12 @@ const updateService = (id, title, text, banner) => News.findOneAndUpdate({ _id: 
 
 const deleteService = (id) => News.findOneAndDelete({ _id: id })
 
+const likenews = (id, userId) => News.findOneAndUpdate({ id: idNews, "likes.userId": { $nin: [userId] } },
+    { $push: { likes: { userId, created: new Date() } } }
+)
+/* $nin: [userId] verifica se o userID ja está no objeto e caso esteja, impede repetição da ação de like. se não estiver, realiza o push. */
+
 const countNews = () => News.countDocuments()
 /* conta quantos documentos há na collection no BD */
 
-export default { createService, findAllService, countNews, topNewsService, findByIdService, searchByTitleService, searchByUserService, updateService, deleteService }
+export default { createService, findAllService, countNews, topNewsService, findByIdService, searchByTitleService, searchByUserService, updateService, deleteService, likenews }

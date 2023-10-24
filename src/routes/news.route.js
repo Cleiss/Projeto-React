@@ -13,6 +13,7 @@ router.get('/byuser', authMiddleware, newsController.searchByUserService)
 
 router.get('/:id', authMiddleware, newsController.findById)
 router.patch('/:id', authMiddleware, newsController.updateService)
+router.patch('/like/:id', authMiddleware, newsController.likenews)
 router.delete('/:id', authMiddleware, newsController.deleteService)
 
 /*
