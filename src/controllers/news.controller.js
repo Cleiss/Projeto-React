@@ -298,19 +298,19 @@ const addComment = async (req, res) => {
 const deleteComment = async (req, res) => {
 
     try {
-        const { id,  } = req.params
+        const { idNews, idComment } = req.params
 
         const userId = req.userId /* valor de userId vem do token decodificado no middleware */
 
-        const { comment } = req.body
+        const news = await newsService.findByIdService(idNews)
 
-        if (!comment) {
-            return res.status(400).send({ message: 'escreva um comentário' })
+        if (String(news.user._id) !== userId) {
+            res.status(400).send({ message: 'exclusão de comentário não permitida' })
         }
 
-        await newsService.addCommentService(id, comment, userId)
+        const commentDelete = await newsService.deleteCommentService(idNews, idComment, userId)
 
-        res.send({ message: 'comentário enviado' })
+        res.send({ message: 'comentário removido' })
     }
     catch (erro) {
         res.status(500).send({ message: erro.message })

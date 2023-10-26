@@ -17,7 +17,7 @@ router.delete('/:id', authMiddleware, newsController.deleteService)
 
 router.patch('/like/:id', authMiddleware, newsController.likenews)
 router.patch('/comment/:id', authMiddleware, newsController.addComment)
-router.patch('/comment/:idComment/', authMiddleware, newsController.deleteComment)
+router.patch('/comment/:idNews/:idComment', authMiddleware, newsController.deleteComment)
 
 /*
 funções criadas em news.controller.js.

@@ -56,6 +56,9 @@ const addCommentService = (id, comment, userId) => {
         })
 }
 
+const deleteCommentService = (idNews, idComment, userId) => News.findOneAndUpdate({ _id: idNews }, { $pull: { comments: { idComment, userId } } })
+
+
 
 const countNews = () => News.countDocuments()
 /* conta quantos documentos há na collection no BD */
@@ -72,5 +75,6 @@ export default {
     deleteService,
     likenews,
     deleteNewsLiked,
-    addCommentService
+    addCommentService,
+    deleteCommentService
 }
