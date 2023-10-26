@@ -1,0 +1,36 @@
+{
+    "openAPI": "3.0.0",
+    "info": {
+        "title": "documentação de API de site de notícias",
+        "description": "nessa documentação consultaremos end-points, rotas disponíveis, etc.",
+        "contact": {
+            "email": "cleiton@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000",
+            "description": "servidor local"
+        }
+    ],
+    "paths": {
+        "/user/": {},
+        "/user": {},
+        "/user/{id}/": {},
+        "/user/{id}": {},
+        "/auth": {},
+        "/news/": {},
+        "/news": {},
+        "/news/top": {},
+        "/news/search": {},
+        "/news/byuser": {},
+        "/news/{id}/": {},
+        "/news/{id}": {},
+        "/news/{id}/": {},
+        "/news/like/{id}/": {},
+        "/news/comment/{id}/": {},
+        "/news/comment/{idNews}/{idComment}": {}
+    },
+    "components": {}
+}
