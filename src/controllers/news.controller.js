@@ -234,26 +234,26 @@ const updateService = async (req, res) => {
 
 const deleteService = async (req, res) => {
     try {
-        const {id} = req.params
+        const { id } = req.params
 
         const news = await newsService.findByIdService(id)
 
         if (String(news.user._id) !== req.userId) {
-            res.status(400).send({message: 'exclusão não permitida'})
+            res.status(400).send({ message: 'exclusão não permitida' })
         }
 
         await newsService.deleteService(id)
 
-        res.send({message: 'postagem excluída com sucesso!'})
+        res.send({ message: 'postagem excluída com sucesso!' })
     }
-    catch(erro) {
-        res.status(500).send({message: erro.message})
+    catch (erro) {
+        res.status(500).send({ message: erro.message })
     }
 }
 
 const likenews = async (req, res) => {
     try {
-        const {id} = req.params
+        const { id } = req.params
 
         const userId = req.userId
 
@@ -262,17 +262,77 @@ const likenews = async (req, res) => {
         if (!newsLiked) {
             await newsService.deleteNewsLiked(id, userId)
 
-            return res.status(200).send({message: 'curtida removida'})
+            return res.status(200).send({ message: 'curtida removida' })
         }
 
-        res.status(200).send({message: 'ok!'})
+        res.status(200).send({ message: 'ok!' })
     }
-    catch(erro) {
-        res.status(500).send({message: erro.message})
+    catch (erro) {
+        res.status(500).send({ message: erro.message })
     }
 }
 
-export default { create, findAll, topNews, findById, searchByTitleService, searchByUserService, updateService, deleteService, likenews }
+const addComment = async (req, res) => {
+
+    try {
+        const { id } = req.params
+
+        const userId = req.userId /* valor de userId vem do token decodificado no middleware */
+
+        const { comment } = req.body
+
+        if (!comment) {
+            return res.status(400).send({ message: 'escreva um comentário' })
+        }
+
+        await newsService.addCommentService(id, comment, userId)
+
+        res.send({ message: 'comentário enviado' })
+    }
+    catch (erro) {
+        res.status(500).send({ message: erro.message })
+    }
+
+}
+
+const deleteComment = async (req, res) => {
+
+    try {
+        const { id,  } = req.params
+
+        const userId = req.userId /* valor de userId vem do token decodificado no middleware */
+
+        const { comment } = req.body
+
+        if (!comment) {
+            return res.status(400).send({ message: 'escreva um comentário' })
+        }
+
+        await newsService.addCommentService(id, comment, userId)
+
+        res.send({ message: 'comentário enviado' })
+    }
+    catch (erro) {
+        res.status(500).send({ message: erro.message })
+    }
+}
+
+
+
+
+export default {
+    create,
+    findAll,
+    topNews,
+    findById,
+    searchByTitleService,
+    searchByUserService,
+    updateService,
+    deleteService,
+    likenews,
+    addComment,
+    deleteComment
+}
 
 /* 
     newsService é o nome do 'pacote' que contém as variáveis exportadas.

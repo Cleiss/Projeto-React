@@ -39,6 +39,23 @@ const deleteNewsLiked = (idNews, userId) => News.findOneAndUpdate({ _id: idNews 
     { $pull: { likes: { userId } } }
 )
 
+const addCommentService = (id, comment, userId) => {
+
+    const idComment = Math.floor(Date.now() * Math.random()).toString(36)
+
+    return News.findOneAndUpdate({ _id: id },
+        {
+            $push: {
+                comments: {
+                    idComment,
+                    userId,
+                    comment,
+                    createdAt: new Date()
+                }
+            }
+        })
+}
+
 
 const countNews = () => News.countDocuments()
 /* conta quantos documentos há na collection no BD */
@@ -54,5 +71,6 @@ export default {
     updateService,
     deleteService,
     likenews,
-    deleteNewsLiked
+    deleteNewsLiked,
+    addCommentService
 }
