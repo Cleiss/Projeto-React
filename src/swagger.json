@@ -1,12 +1,12 @@
 {
-    "openAPI": "3.0.0",
+    "openAPI": "3.1.0",
     "info": {
         "title": "documentação de API de site de notícias",
         "description": "nessa documentação consultaremos end-points, rotas disponíveis, etc.",
         "contact": {
             "email": "cleiton@gmail.com"
         },
-        "version": "1.0.0"
+        "swagger": "2.0"
     },
     "servers": [
         {
