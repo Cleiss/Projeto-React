@@ -6,6 +6,8 @@ import swaggerUI from 'swagger-ui-express'
 import swaggerDocument from '../swagger.json' assert {type: "json"}
 /* swaggerDocument contém as especificações do projeto */
 
+
+
 const swaggerRouter = Router()
 
 swaggerRouter.use('/', swaggerUI.serve)

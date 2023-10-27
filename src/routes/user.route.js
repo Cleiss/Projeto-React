@@ -8,7 +8,7 @@ import { validId, validUser } from '../middlewares/global.middlewares.js'
 //Nome (Identificador da rota; '/nome')
 //Function (callback)
 
-router.post('/', userController.create)
+router.post('/criar', userController.create)
 
 router.get('/', userController.read)
 
