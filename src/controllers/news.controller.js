@@ -180,7 +180,8 @@ const searchByUserService = async (req, res) => {
         const id = req.userId
         /* 
         userId vem do middleware de auth através de news.route.js
-        o id não está destruturado pq é o id do usuário, não da notícia.
+        o id não está destruturado pq é o id do usuário, não da postagem.
+        esse serviço busca apenas as postagens do usuário logado, não de outros.
         */
 
         const news = await newsService.searchByUserService(id)
@@ -304,7 +305,7 @@ const deleteComment = async (req, res) => {
 
         const news = await newsService.findByIdService(idNews)
 
-        if (String(news.user._id) !== userId) {
+        if (String(news.user._id) || userId !== userId) {
             res.status(400).send({ message: 'exclusão de comentário não permitida' })
         }
 

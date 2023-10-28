@@ -35,7 +35,7 @@ const likenews = (idNews, userId) => News.findOneAndUpdate({ _id: idNews, "likes
 /* $nin: [userId] verifica se o userID ja está no objeto e caso esteja, impede repetição da ação de like. se não estiver, realiza o push. */
 
 
-const deleteNewsLiked = (idNews, userId) => News.findOneAndUpdate({ _id: idNews },
+const deleteNewsLiked = (idNews, userId) => News.findOneAndDelete({ _id: idNews },
     { $pull: { likes: { userId } } }
 )
 
@@ -56,7 +56,7 @@ const addCommentService = (id, comment, userId) => {
         })
 }
 
-const deleteCommentService = (idNews, idComment, userId) => News.findOneAndUpdate({ _id: idNews }, { $pull: { comments: { idComment, userId } } })
+const deleteCommentService = (idNews, idComment, userId) => News.findOneAndDelete({ _id: idNews }, { $pull: { comments: { idComment, userId } } })
 
 
 

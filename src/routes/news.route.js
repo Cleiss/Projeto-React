@@ -5,19 +5,19 @@ import authMiddleware from '../middlewares/auth.middleware.js'
 const router = Router()
 
 
-router.post('/', authMiddleware, newsController.create)
+router.post('/create', authMiddleware, newsController.create)
 router.get('/', newsController.findAll)
 router.get('/top', newsController.topNews)
-router.get('/search', newsController.searchByTitleService)
+router.get('/searchtitle', newsController.searchByTitleService)
 router.get('/byuser', authMiddleware, newsController.searchByUserService)
 
 router.get('/:id', authMiddleware, newsController.findById)
-router.patch('/:id', authMiddleware, newsController.updateService)
-router.delete('/:id', authMiddleware, newsController.deleteService)
+router.patch('/updt/:id', authMiddleware, newsController.updateService)
+router.delete('/del/:id', authMiddleware, newsController.deleteService)
 
 router.patch('/like/:id', authMiddleware, newsController.likenews)
 router.patch('/comment/:id', authMiddleware, newsController.addComment)
-router.patch('/comment/:idNews/:idComment', authMiddleware, newsController.deleteComment)
+router.delete('/:idNews/:idComment', authMiddleware, newsController.deleteComment)
 
 /*
 funções criadas em news.controller.js.
