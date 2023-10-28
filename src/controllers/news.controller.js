@@ -305,7 +305,7 @@ const deleteComment = async (req, res) => {
 
         const news = await newsService.findByIdService(idNews)
 
-        if (String(news.user._id) || userId !== userId) {
+        if (String(news.user._id) !== userId) {
             res.status(400).send({ message: 'exclusão de comentário não permitida' })
         }
 
