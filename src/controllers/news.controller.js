@@ -301,7 +301,7 @@ const deleteComment = async (req, res) => {
     try {
         const { idNews, idComment } = req.params
 
-        const userId = req.userId // valor de userId vem do token decodificado no middleware 
+        const userId = req.userId /* valor de userId vem do token decodificado no middleware */ 
 
         const commentDelete = await newsService.deleteCommentService(idNews, idComment, userId)
 
