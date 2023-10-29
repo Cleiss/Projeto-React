@@ -56,7 +56,7 @@ const addCommentService = (id, comment, userId) => {
         })
 }
 
-const deleteCommentService = (idNews, idComment, userId) => News.findOneAndDelete({ _id: idNews }, { $pull: { comments: { idComment, userId } } })
+const deleteCommentService = (idNews, idComment, userId) => News.findOneAndUpdate({ _id: idNews }, { $pull: { comments: { idComment, userId } } })
 
 
 

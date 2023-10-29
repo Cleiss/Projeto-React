@@ -301,24 +301,27 @@ const deleteComment = async (req, res) => {
     try {
         const { idNews, idComment } = req.params
 
-        const userId = req.userId /* valor de userId vem do token decodificado no middleware */
-
-        const news = await newsService.findByIdService(idNews)
-
-        if (String(news.user._id) || userId !== userId) {
-            res.status(400).send({ message: 'exclusão de comentário não permitida' })
-        }
+        const userId = req.userId // valor de userId vem do token decodificado no middleware 
 
         const commentDelete = await newsService.deleteCommentService(idNews, idComment, userId)
 
-        res.send({ message: 'comentário removido' })
+        const commentFinder = commentDelete.comments.find((comment) => comment.idComment === idComment)
+
+        if (!commentFinder) {
+            return res.status(400).send({message: 'comentário não encontrado'})
+        }
+
+        if (commentFinder.userId !== userId) {
+            return res.status(400).send({ message: 'você não pode excluir este comentário' })
+        }
+
+        res.send({ message: 'comentário excluído' })
+
     }
     catch (erro) {
         res.status(500).send({ message: erro.message })
     }
 }
-
-
 
 
 export default {

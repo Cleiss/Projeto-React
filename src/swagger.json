@@ -638,10 +638,10 @@
                 }
             }
         },
-        "news/{idnews}/{idcomment}": {
-            "delete": {
+        "/news/{idnews}/{idcomment}": {
+            "patch": {
                 "summary": "Comment on a post",
-                "description": "Route responsible for commenting on a post",
+                "description": "Route responsible for delete a comment",
                 "tags": [
                     "Post"
                 ],
@@ -653,7 +653,14 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "id",
+                        "name": "idnews",
+                        "type": "string",
+                        "description": "News ID",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "idcomment",
                         "type": "string",
                         "description": "News ID",
                         "required": true
