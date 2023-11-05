@@ -18,4 +18,4 @@ router.patch('/updt/:id', validId, validUser, userController.updtId)
 
 export default router
 
-/* userController é o nome do 'pacote' que contém as variáveis exportadas */
+/* userController é o nome do objeto/'pacote' que contém as variáveis exportadas */
