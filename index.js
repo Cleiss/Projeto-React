@@ -7,7 +7,7 @@ import dotenv from 'dotenv'
 import authRouter from './src/routes/auth.route.js'
 import userRouter from './src/routes/user.route.js'
 import newsRouter from './src/routes/news.route.js'
-import swaggerRouter from './src/routes/swagger.route.js'
+import swaggerRouter from './src/routes/swagger.route.cjs'
 
 
 dotenv.config() /*dotenv está aqui pq a função que executa o banco de dados está sendo executada aqui no index.js*/
