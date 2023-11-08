@@ -1,5 +1,5 @@
 import './App.css'
-import Home from "./Pages/Home/Home.jsx"
+import Home from "./Pages/Home/Home"
 
 /* essa função é um Component. Components são funções que retornam HTML */
 function App() {
