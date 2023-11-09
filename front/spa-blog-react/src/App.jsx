@@ -1,8 +1,8 @@
 import './App.css'
-import Home from "./Pages/Home/Home"
+import {Home} from "./Pages/Home/Home"
 
 /* essa função é um Component. Components são funções que retornam HTML */
-function App() {
+export function App() {
 
 
   return (
@@ -10,4 +10,3 @@ function App() {
   )
 }
 
-export default App
