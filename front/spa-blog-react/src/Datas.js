@@ -29,4 +29,4 @@ const news = [
     }
 ]
 
-export default news
+export {news}

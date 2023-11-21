@@ -1,4 +1,6 @@
-import  {Navbar}  from "../../Components/Navbar/Navbar.jsx"
+import { Navbar } from "../../Components/Navbar/Navbar.jsx"
+import { Card } from "../../Components/Card/Card.jsx"
+import { news } from "../../Datas.js"
 
 export function Home() {
     /*
@@ -8,9 +10,14 @@ export function Home() {
     return (
 
         <section>
-            <Navbar/>
-            <h1>Olá Cleitin!</h1>
+            <Navbar />
+            {news.map((item, index) => {
+                return <Card key={index} news={item}/>
+            })}
+            
         </section>
 
     )
 }
+
+/* .map é um HOF (high order function). pesquisar sobre. */
