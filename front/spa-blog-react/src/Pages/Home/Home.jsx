@@ -1,6 +1,7 @@
 import { Navbar } from "../../Components/Navbar/Navbar.jsx"
 import { Card } from "../../Components/Card/Card.jsx"
 import { news } from "../../Datas.js"
+import { HomeBody } from "./HomeStyled.jsx"
 
 export function Home() {
     /*
@@ -11,10 +12,13 @@ export function Home() {
 
         <section>
             <Navbar />
-            {news.map((item, index) => {
-                return <Card key={index} news={item}/>
-            })}
-            
+            <HomeBody>
+                {news.map((item, index) => {
+                    return <Card key={index} news={item} />
+                })}
+            </HomeBody>
+
+
         </section>
 
     )
