@@ -1,21 +1,38 @@
 import { Navbar } from "../../Components/Navbar/Navbar.jsx"
 import { Card } from "../../Components/Card/Card.jsx"
-import { news } from "../../Datas.js"
+//import { news } from "../../Datas.js"
 import { HomeBody } from "./HomeStyled.jsx"
+import { getAllPosts } from "../../Services/postsServices.js"
+import { useState } from "react" //atualiza o estado inicial. neste caso, atualizará 'news'.
 
 export function Home() {
-    /*
-    return apenas retorna uma única tag ou fragment, então todas as outras precisam estar envolvidas/aninhadas numa só.
-    fragment é uma tag vazia. não necessariamente precisa ser uma section, por exemplo, ou algo do tipo.
-    */
+
+    const [news, setNews] = useState([]) //em useState([]), 'news' inicia como um array vazio. 'setNews' é uma função que altera o estado de 'news'.
+
+    async function findAllPosts() {
+        const response = await getAllPosts()
+
+        setNews(response.data.results) //atualização do estado de 'news'.
+    }
+
+    findAllPosts()
+    console.log(news)
+
     return (
 
         <section>
             <Navbar />
             <HomeBody>
-                {news.map((item, index) => {
-                    return <Card key={index} news={item} />
-                })}
+                {news.map((item) => (
+                    <Card
+                    key={item.id}
+                    title={item.title}
+                    text={item.text}
+                    banner={item.banner}
+                    likes={item.likes.length}
+                    comments={item.comments.length}
+                />
+                ))}
             </HomeBody>
 
 
@@ -24,4 +41,10 @@ export function Home() {
     )
 }
 
-/* .map é um HOF (high order function). pesquisar sobre. */
+/* 
+    .map é um HOF (high order function). pesquisar sobre.
+
+    return apenas retorna uma única tag ou fragment, então todas as outras precisam estar envolvidas/aninhadas numa só.
+    fragment é uma tag vazia. não necessariamente precisa ser uma section, por exemplo, ou algo do tipo.
+    
+*/
