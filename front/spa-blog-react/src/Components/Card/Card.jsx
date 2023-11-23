@@ -1,27 +1,27 @@
 import { CardBody, CardContainer, CardFooter } from "./CardStyle.jsx";
 
 
-export function Card({ news }) {
+export function Card(props) {
     //console.log(news)
     return (
         <CardContainer>
             <CardBody>
                 <div>
-                    <h2>{news.title}</h2>
-                    <p>{news.text}</p>
+                    <h2>{props.title}</h2>
+                    <p>{props.text}</p>
                 </div>
-                <img src={news.image} alt="Imagem" />
+                <img src={props.banner} alt="Imagem" />
             </CardBody>
 
             <CardFooter>
                 <div>
-                <i className="bi bi-hand-thumbs-up"></i>
-                <span>{news.likes}</span>
+                    <i className="bi bi-hand-thumbs-up"></i>
+                    <span>{props.likes}</span>
                 </div>
-                
+
                 <div>
-                <i className="bi bi-chat"></i>
-                <span>{news.comments}</span>
+                    <i className="bi bi-chat"></i>
+                    <span>{props.comments}</span>
                 </div>
             </CardFooter>
         </CardContainer>
