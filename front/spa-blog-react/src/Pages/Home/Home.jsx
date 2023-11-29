@@ -3,7 +3,7 @@ import { Card } from "../../Components/Card/Card.jsx"
 //import { news } from "../../Datas.js"
 import { HomeBody } from "./HomeStyled.jsx"
 import { getAllPosts } from "../../Services/postsServices.js"
-import { useState } from "react" //atualiza o estado inicial. neste caso, atualizará 'news'.
+import { useEffect, useState } from "react" //atualiza o estado inicial. neste caso, atualizará 'news'.
 
 export function Home() {
 
@@ -15,8 +15,9 @@ export function Home() {
         setNews(response.data.results) //atualização do estado de 'news'.
     }
 
-    findAllPosts()
-    console.log(news)
+    useEffect(() => {
+        findAllPosts()
+    }, [])
 
     return (
 
@@ -46,5 +47,7 @@ export function Home() {
 
     return apenas retorna uma única tag ou fragment, então todas as outras precisam estar envolvidas/aninhadas numa só.
     fragment é uma tag vazia. não necessariamente precisa ser uma section, por exemplo, ou algo do tipo.
+
+    useState() é um hook.
     
 */
