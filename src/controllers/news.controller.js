@@ -60,6 +60,8 @@ const findAll = async (req, res) => {
             return res.status(400).send({ message: 'não há notícias cadastradas' })
         }
 
+        news.shift()
+
         res.send({
             nextUrl,
             previousUrl,
