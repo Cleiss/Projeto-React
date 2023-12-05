@@ -1,19 +1,25 @@
 import { Navbar } from "../../Components/Navbar/Navbar.jsx"
 import { Card } from "../../Components/Card/Card.jsx"
-//import { news } from "../../Datas.js"
-import { HomeBody } from "./HomeStyled.jsx"
-import { getAllPosts } from "../../Services/postsServices.js"
+import { HomeBody, HomeHeader } from "./HomeStyled.jsx"
+import { getAllPosts, getTopPost } from "../../Services/postsServices.js"
 import { useEffect, useState } from "react" //atualiza o estado inicial. neste caso, atualizará 'news'.
 
 export function Home() {
 
     const [news, setNews] = useState([]) //em useState([]), 'news' inicia como um array vazio. 'setNews' é uma função que altera o estado de 'news'.
+    const [topnew, setTopNew] = useState({})
+
 
     async function findAllPosts() {
-        const response = await getAllPosts()
+        const allPosts = await getAllPosts()
 
-        setNews(response.data.results) //atualização do estado de 'news'.
+        setNews(allPosts.data.results) //atualização do estado de 'news'.
+
+        const topNew = await getTopPost()
+
+        setTopNew(topNew.data.news)
     }
+
 
     useEffect(() => {
         findAllPosts()
@@ -23,16 +29,27 @@ export function Home() {
 
         <section>
             <Navbar />
+            <HomeHeader>
+                <Card
+                    top={true}
+                    key={topnew.id}
+                    title={topnew.title}
+                    text={topnew.text}
+                    banner={topnew.banner}
+                    likes={topnew.likes}
+                    comments={topnew.comments}
+                />
+            </HomeHeader>
             <HomeBody>
                 {news.map((item) => (
                     <Card
-                    key={item.id}
-                    title={item.title}
-                    text={item.text}
-                    banner={item.banner}
-                    likes={item.likes.length}
-                    comments={item.comments.length}
-                />
+                        key={item.id}
+                        title={item.title}
+                        text={item.text}
+                        banner={item.banner}
+                        likes={item.likes}
+                        comments={item.comments}
+                    />
                 ))}
             </HomeBody>
 
