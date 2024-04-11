@@ -11,9 +11,9 @@ export function Home() {
 
 
     async function findNews() {
-        const allPosts = await getNews()
+        const allNews = await getNews()
 
-        setNews(allPosts.data.results) //atualização do estado de 'news'.
+        setNews(allNews.data.results) //atualização do estado de 'news'.
 
         const topNew = await getTopNew()
 
