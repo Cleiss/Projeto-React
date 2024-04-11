@@ -21,7 +21,7 @@ export function Card(props) {
 
                         <section>
                             <i className="bi bi-chat"></i>
-                            <span>{props.comments?.length}</span>
+                            <span>{props.comments?.length}</span> 
                         </section>
                     </CardFooter>
                 </div>
@@ -37,4 +37,6 @@ export function Card(props) {
 /* 
 o uso de chaves dentro do HTML para inserir JS é chamado de ''interpolação de dados''. exemplo: <h2>{news.title}</h2>
 ''news'' vem de home.jsx, passado como ''prop'' e trazendo o index e o item do array.
+em props.likes?.length ou props.comments?.length, o uso de ''?'' é chamado de optional chain,
+isso indica que as variáveis likes e comments podem ser nulas.
 */

@@ -1,7 +1,7 @@
 import { Navbar } from "../../Components/Navbar/Navbar.jsx"
 import { Card } from "../../Components/Card/Card.jsx"
 import { HomeBody, HomeHeader } from "./HomeStyled.jsx"
-import { getAllPosts, getTopPost } from "../../Services/postsServices.js"
+import { getNews, getTopNew } from "../../Services/postsServices.js"
 import { useEffect, useState } from "react" //atualiza o estado inicial. neste caso, atualizará 'news'.
 
 export function Home() {
@@ -10,20 +10,21 @@ export function Home() {
     const [topnew, setTopNew] = useState({})
 
 
-    async function findAllPosts() {
-        const allPosts = await getAllPosts()
+    async function findNews() {
+        const allPosts = await getNews()
 
         setNews(allPosts.data.results) //atualização do estado de 'news'.
 
-        const topNew = await getTopPost()
+        const topNew = await getTopNew()
 
         setTopNew(topNew.data.news)
+        
     }
 
 
     useEffect(() => {
-        findAllPosts()
-    }, [])
+        findNews()
+    }, []) //está impedindo o looping de useState
 
     return (
 
