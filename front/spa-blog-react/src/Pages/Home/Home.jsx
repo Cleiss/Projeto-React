@@ -29,10 +29,9 @@ export function Home() {
     return (
 
         <section>
-            <Navbar />
             <HomeHeader>
                 <Card
-                    top={true}
+                    top={"true"}
                     key={topnew.id}
                     title={topnew.title}
                     text={topnew.text}
