@@ -1,13 +1,13 @@
 import { Navbar } from "../../Components/Navbar/Navbar.jsx"
 import { Card } from "../../Components/Card/Card.jsx"
 import { HomeBody, HomeHeader } from "./HomeStyled.jsx"
-import { getNews, getTopNew } from "../../Services/postsServices.js"
+import { getNews, getTopNews } from "../../Services/postsServices.js"
 import { useEffect, useState } from "react" //atualiza o estado inicial. neste caso, atualizará 'news'.
 
 export function Home() {
 
     const [news, setNews] = useState([]) //em useState([]), 'news' inicia como um array vazio. 'setNews' é uma função que altera o estado de 'news'.
-    const [topnew, setTopNew] = useState({})
+    const [topnew, setTopNews] = useState({})
 
 
     async function findNews() {
@@ -15,9 +15,9 @@ export function Home() {
 
         setNews(allNews.data.results) //atualização do estado de 'news'.
 
-        const topNew = await getTopNew()
+        const topNew = await getTopNews()
 
-        setTopNew(topNew.data.news)
+        setTopNews(topNew.data.news)
         
     }
 
