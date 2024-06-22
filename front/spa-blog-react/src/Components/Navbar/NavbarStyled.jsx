@@ -25,7 +25,7 @@ export const InputSearch = styled.div`
     display: flex;
     align-items: center;
 
-    i {
+    button {
         position: absolute;
     top: 1;
     right: 0.2rem;
@@ -35,6 +35,13 @@ export const InputSearch = styled.div`
     color: #757575;
     border-radius: 0.3rem;
     padding: 0.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+    }
+
+    button:hover {
+        background-color:#919191;
+        color: #f5f5f5;
     }
 
     input {
