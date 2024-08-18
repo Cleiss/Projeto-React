@@ -1,6 +1,6 @@
 import { Link, Outlet, useNavigate } from "react-router-dom"
 import logo from "../../images/LogoBN.png"
-import {Button, Nav, ImgLogo, InputSearch} from "../Navbar/NavbarStyled.jsx"
+import {Button, Nav, ImgLogo, InputSearch, ErrorSpan} from "../Navbar/NavbarStyled.jsx"
 import {useForm} from "react-hook-form"
 import {z} from "zod"
 import {zodResolver} from "@hookform/resolvers/zod"
@@ -56,7 +56,7 @@ export function Navbar() {
 
                 <Button>Entrar</Button>
             </Nav>
-            {errors.title && <span>{errors.title.message}</span>}
+            {errors.title && <ErrorSpan>{errors.title.message}</ErrorSpan>}
             <Outlet/>
         </>
     )
