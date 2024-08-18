@@ -13,3 +13,12 @@ export function getTopNews() {
 
     return response
 }
+
+export function searchNews(title) {
+        const response = axios.get(`${baseURL}/news/searchtitle?title=${title}`).catch(function (error) {
+            console.log(error.toJSON());
+          })
+        
+            return response
+    
+}
