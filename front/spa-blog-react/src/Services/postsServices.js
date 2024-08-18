@@ -15,10 +15,8 @@ export function getTopNews() {
 }
 
 export function searchNews(title) {
-        const response = axios.get(`${baseURL}/news/searchtitle?title=${title}`).catch(function (error) {
-            console.log(error.toJSON());
-          })
-        
-            return response
-    
+    const response = axios.get(`${baseURL}/news/searchtitle?title=${title}`)
+
+    return response
+
 }
