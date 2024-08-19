@@ -29,11 +29,12 @@ export function Search() {
             <TextResults>
                 <span>
                     {!news.length ?
-                        'Nenhum resultado encontrado' :
-                        `${news.length} ${news.length > 1 ? 'resultados encontrados:' :
-                            'resultado encontrado'}`
+                        'Nenhum resultado encontrado para:' :
+                        `${news.length} ${news.length > 1 ? 'resultados encontrados para:' :
+                            'resultado encontrado para:'}`
                     }
                 </span>
+                <h2>{title}</h2>
             </TextResults>
 
             <Searchstyled>
