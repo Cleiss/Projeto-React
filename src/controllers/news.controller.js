@@ -152,10 +152,6 @@ const searchByTitleService = async (req, res) => {
 
         const news = await newsService.searchByTitleService(title)
 
-        if (news.length === 0) {
-            res.status(400).send({ message: 'não há postagem com esse título' })
-        }
-
         res.send({
             results: news.map((item) => ({
                 id: item._id,
