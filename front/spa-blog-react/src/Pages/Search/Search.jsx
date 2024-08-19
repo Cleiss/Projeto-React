@@ -28,9 +28,10 @@ export function Search() {
         <ContainerResults>
             <TextResults>
                 <span>
-                    {news.length
-                        ? `${news.length} resultados encontrados:`
-                        : 'Nenhum resultado encontrado'
+                    {!news.length ?
+                        'Nenhum resultado encontrado' :
+                        `${news.length} ${news.length > 1 ? 'resultados encontrados:' :
+                            'resultado encontrado'}`
                     }
                 </span>
             </TextResults>
