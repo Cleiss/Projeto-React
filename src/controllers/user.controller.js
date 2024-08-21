@@ -1,7 +1,7 @@
 import userService from "../services/user.service.js"
 
 
-const create = async (req, res) => {
+const createUser = async (req, res) => {
 
     try {
         const { nome, username, email, senha, foto, background } = req.body
@@ -11,7 +11,7 @@ const create = async (req, res) => {
             res.status(400).send({ message: 'Preencha todos os campos!' })
         }
 
-        const user = await userService.create(req.body)
+        const user = await userService.createUserService(req.body)
 
         if (!user) {
 
@@ -29,7 +29,7 @@ const create = async (req, res) => {
                 foto,
                 background
             },
-            message: "user criado com sucesso!"
+            message: "Usuário criado com sucesso!"
         })
     }
     catch (erro) {
@@ -37,13 +37,13 @@ const create = async (req, res) => {
     }
 }
 
-const read = async (req, res) => {
+const readUsers = async (req, res) => {
 
     try {
-        const usuarios = await userService.findAll()
+        const usuarios = await userService.findAllUsersService()
 
         if (usuarios.length === 0) {
-            return res.status(400).send({ message: 'não há usuários cadastrados' })
+            return res.status(400).send({ message: 'Não há usuários cadastrados' })
         }
 
         res.send(usuarios)
@@ -54,7 +54,7 @@ const read = async (req, res) => {
 
 }
 
-const findId = async (req, res) => {
+const findIdUser = async (req, res) => {
 
     try {
         const id = req.id /*valor vem do middleware (assim não precisa consultar o bd)*/
@@ -68,21 +68,38 @@ const findId = async (req, res) => {
     }
 }
 
-const updtId = async (req, res) => {
+const findEmailUser = async (req, res) => {
+
+    try {
+        const usuarios = await userService.findUserEmailService()
+
+        if (usuarios.length === 0) {
+            return res.status(400).send({ message: 'Não há usuários cadastrados com este email' })
+        }
+
+        res.send(usuarios)
+    }
+    catch (erro) {
+        res.status(500).send({ message: erro })
+    }
+
+}
+
+const updtIdUser = async (req, res) => {
 
     try {
         const { nome, username, email, senha, foto, background } = req.body
 
         if (!nome && !username && !email && !senha && !foto && !background) {
 
-            res.status(400).send({ message: 'preencha pelo menos um campo para atualizar' })
+            res.status(400).send({ message: 'Preencha pelo menos um campo para atualizar' })
         }
 
         const id = req.id /*valor vem do middleware (assim não precisa consultar o bd)*/
 
         const usuario = req.user /*valor vem do middleware (assim não precisa consultar o bd)*/
 
-        await userService.updt(
+        await userService.updtUserService(
             id,
             nome,
             username,
@@ -100,6 +117,6 @@ const updtId = async (req, res) => {
 
 }
 
-export default { create, read, findId, updtId }
+export default { createUser, readUsers, findIdUser, findEmailUser, updtIdUser }
 
 /* userService é o nome do 'pacote' que contém as variáveis exportadas */

@@ -24,7 +24,7 @@ const validUser = async (req, res, next) => {
     try {
         const id = req.params.id
 
-        const usuario = await userService.findIdservice(id)
+        const usuario = await userService.findUserIdService(id)
 
         if (!usuario) {
 

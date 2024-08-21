@@ -8,13 +8,13 @@ import { validId, validUser } from '../middlewares/global.middlewares.js'
 //Nome (Identificador da rota; '/nome')
 //Function (callback)
 
-router.post('/criar', userController.create)
+router.post('/criar', userController.createUser)
 
-router.get('/', userController.read)
+router.get('/', userController.readUsers)
 
-router.get('/:id', validId, validUser, userController.findId)
+router.get('/:id', validId, validUser, userController.findIdUser)
 
-router.patch('/updt/:id', validId, validUser, userController.updtId)
+router.patch('/updt/:id', validId, validUser, userController.updtIdUser)
 
 export default router
 
