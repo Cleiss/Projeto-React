@@ -6,6 +6,7 @@ import { Navbar } from './Components/Navbar/Navbar'
 import { Home } from './Pages/Home/Home'
 import { Search } from './Pages/Search/Search'
 import { GlobalStyled } from './GlobalStyled.jsx'
+import { Authentication } from './Pages/Authenticate/Auth.jsx'
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
     path: "/",
 
     //rota mãe
-    element: <Navbar />,
+    element: <Navbar />, /* element é um 'page.jsx' */
 
     //
     children: [
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         element: <Search />
       }
     ]
+  },
+  {
+    path: "/auth",
+    element: <Authentication />
   }
 ])
 

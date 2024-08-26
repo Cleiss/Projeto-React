@@ -32,6 +32,10 @@ export function Navbar() {
         reset() /* limpa automaticamente o campo de pesquisa após pesquisar/navegar */
     }
 
+    function goAuth () {
+        navigate('/auth')
+    }
+
     /* input precisa estar dentro de um form */
     /* '...' = spread operator (pega vários dados): '...register' */
     return (
@@ -54,7 +58,7 @@ export function Navbar() {
                 </Link>
                 
 
-                <Button>Entrar</Button>
+                <Button onClick={goAuth}>Entrar</Button>
             </Nav>
             {errors.title && <ErrorSpan>{errors.title.message}</ErrorSpan>}
             <Outlet/>
