@@ -1,9 +1,10 @@
 import { Link, Outlet, useNavigate } from "react-router-dom"
 import logo from "../../images/LogoBN.png"
-import {Button, Nav, ImgLogo, InputSearch, ErrorSpan} from "../Navbar/NavbarStyled.jsx"
+import {Nav, ImgLogo, InputSearch, ErrorSpan} from "../Navbar/NavbarStyled.jsx"
 import {useForm} from "react-hook-form"
 import {z} from "zod"
 import {zodResolver} from "@hookform/resolvers/zod"
+import { ButtonSpace } from "../Button/ButtonStyled.jsx"
 
 const searchSchema = z.object({
     title: z.string().nonempty({message:"Pesquise por um título"}).refine(value => !/^\s*$/.test(value), {message:"Pesquise por um título"})
@@ -58,7 +59,7 @@ export function Navbar() {
                 </Link>
                 
 
-                <Button onClick={goAuth}>Entrar</Button>
+                <ButtonSpace onClick={goAuth}>Entrar</ButtonSpace>
             </Nav>
             {errors.title && <ErrorSpan>{errors.title.message}</ErrorSpan>}
             <Outlet/>
