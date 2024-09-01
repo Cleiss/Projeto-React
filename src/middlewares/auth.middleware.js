@@ -30,7 +30,7 @@ const authMiddleware = (req, res, next) => {
                 return res.status(401).send({ message: 'token inválido' })
             }
 
-            const user = await userService.findIdservice(decoded.id)
+            const user = await userService.findUserIdService(decoded.id)
 
             if (!user || !user.id) {
                 return res.status(401).send({ message: 'token inválido' })

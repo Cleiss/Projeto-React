@@ -4,7 +4,7 @@ import {Nav, ImgLogo, InputSearch, ErrorSpan} from "../Navbar/NavbarStyled.jsx"
 import {useForm} from "react-hook-form"
 import {z} from "zod"
 import {zodResolver} from "@hookform/resolvers/zod"
-import { ButtonSpace } from "../Button/ButtonStyled.jsx"
+import { Button } from "../../Components/Button/Button";
 
 const searchSchema = z.object({
     title: z.string().nonempty({message:"Pesquise por um título"}).refine(value => !/^\s*$/.test(value), {message:"Pesquise por um título"})
@@ -33,10 +33,6 @@ export function Navbar() {
         reset() /* limpa automaticamente o campo de pesquisa após pesquisar/navegar */
     }
 
-    function goAuth () {
-        navigate('/auth')
-    }
-
     /* input precisa estar dentro de um form */
     /* '...' = spread operator (pega vários dados): '...register' */
     return (
@@ -59,7 +55,9 @@ export function Navbar() {
                 </Link>
                 
 
-                <ButtonSpace onClick={goAuth}>Entrar</ButtonSpace>
+                <Link to='/auth'>
+                <Button text="Entrar" />
+                </Link>
             </Nav>
             {errors.title && <ErrorSpan>{errors.title.message}</ErrorSpan>}
             <Outlet/>
