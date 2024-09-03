@@ -1,34 +1,27 @@
 import { Link, Outlet, useNavigate } from "react-router-dom"
 import logo from "../../images/LogoBN.png"
-import {Nav, ImgLogo, InputSearch, ErrorSpan} from "../Navbar/NavbarStyled.jsx"
-import {useForm} from "react-hook-form"
-import {z} from "zod"
-import {zodResolver} from "@hookform/resolvers/zod"
+import { Nav, ImgLogo, InputSearch, ErrorSpan } from "../Navbar/NavbarStyled.jsx"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "../../Components/Button/Button";
-
-const searchSchema = z.object({
-    title: z.string().nonempty({message:"Pesquise por um título"}).refine(value => !/^\s*$/.test(value), {message:"Pesquise por um título"})
-})
-
-/* refine(value => !/^\s*$/.test(value)) testa se há apenas espaço na espaço e
-     está negando para que não deixe ter apenas espaço */
+import { searchSchema } from "../../schemas/searchSchema.js"
 
 export function Navbar() {
 
     /*constante descontruída com origem no hook form*/
     /*register: registra cada input; handleSubmit: método para o 'submit'*/
-    const {register, 
-        handleSubmit, 
+    const { register,
+        handleSubmit,
         reset,
-        formState: {errors}
-        } = useForm({
+        formState: { errors }
+    } = useForm({
         resolver: zodResolver(searchSchema)
-    }) 
+    })
 
     const navigate = useNavigate()
 
-    function onSearch (data) {
-        const {title} = data
+    function onSearch(data) {
+        const { title } = data
         navigate(`/search/${title}`)
         reset() /* limpa automaticamente o campo de pesquisa após pesquisar/navegar */
     }
@@ -39,28 +32,28 @@ export function Navbar() {
         <>
             <Nav>
                 <form onSubmit={handleSubmit(onSearch)}>
-                <InputSearch>
-                    <button type='submit'>
-                    <i className="bi bi-search"></i>
-                    </button>
-                    <input
-                        {...register('title')} 
-                        type="text"
-                        placeholder="Pesquisar" />
-                </InputSearch>
+                    <InputSearch>
+                        <button type='submit'>
+                            <i className="bi bi-search"></i>
+                        </button>
+                        <input
+                            {...register('title')}
+                            type="text"
+                            placeholder="Pesquisar" />
+                    </InputSearch>
                 </form>
 
                 <Link to='/'>
-                <ImgLogo src={logo} alt="logo BN" />
+                    <ImgLogo src={logo} alt="logo BN" />
                 </Link>
-                
+
 
                 <Link to='/auth'>
-                <Button text="Entrar" />
+                    <Button text="Entrar" />
                 </Link>
             </Nav>
             {errors.title && <ErrorSpan>{errors.title.message}</ErrorSpan>}
-            <Outlet/>
+            <Outlet />
         </>
     )
 }
