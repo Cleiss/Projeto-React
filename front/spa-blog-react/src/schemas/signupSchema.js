@@ -19,14 +19,14 @@ export const signupSchema = z.object({
         .email({ message: "Email inválido." })
         .toLowerCase(),
 
-    password: z.string()
+    senha: z.string()
         .min(6, { message: "A senha deve ter no mínimo 6 caracteres." }),
 
     confpassword: z.string()
         .min(6, { message: "Confirmação de senha inválida." })
 
 })
-.refine((data) => data.password === data.confpassword, {
+.refine((data) => data.senha === data.confpassword, {
     message:"Senhas não correspondem.",
     path: ["confpassword"],
 })

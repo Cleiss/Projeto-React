@@ -6,6 +6,7 @@ import { Button } from "../../Components/Button/Button";
 import { signinSchema } from "../../schemas/signinSchema";
 import { ErrorSpan } from "../../Components/Navbar/NavbarStyled";
 import { signupSchema } from "../../schemas/signupSchema";
+import { signup } from "../../Services/userServices";
 
 export function Authentication() {
 
@@ -35,8 +36,14 @@ export function Authentication() {
         console.log(data)
     }
 
-    function signupSubmit(data) {
-        console.log(data)
+    async function signupSubmit(data) {
+        try {
+            const response = await signup(data)
+            console.log(response)
+        }
+        catch (erro) {
+            console.log(erro)
+        }
     }
 
     return (
@@ -99,7 +106,7 @@ export function Authentication() {
                     <Input
                         type="password"
                         placeholder="Senha"
-                        name="password"
+                        name="senha"
                         register={registersignup}
                     />
                     {errorsSignup.password && (
