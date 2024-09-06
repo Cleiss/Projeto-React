@@ -12,7 +12,7 @@ router.post('/criar', userController.createUser)
 
 router.get('/', userController.readUsers)
 
-router.get('/:id', validId, validUser, userController.findIdUser)
+router.get('/findId/:id', validId, validUser, userController.findIdUser)
 
 router.patch('/updt/:id', validId, validUser, userController.updtIdUser)
 

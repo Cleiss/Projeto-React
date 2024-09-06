@@ -6,7 +6,9 @@ import { Button } from "../../Components/Button/Button";
 import { signinSchema } from "../../schemas/signinSchema";
 import { ErrorSpan } from "../../Components/Navbar/NavbarStyled";
 import { signupSchema } from "../../schemas/signupSchema";
-import { signup } from "../../Services/userServices";
+import { signin, signup } from "../../Services/userServices";
+import Cookies from "js-cookie"
+import {useNavigate} from "react-router-dom"
 
 export function Authentication() {
 
@@ -32,8 +34,18 @@ export function Authentication() {
         }
     )
 
-    function signinSubmit(data) {
-        console.log(data)
+    const navigate = useNavigate()
+
+
+    async function signinSubmit(data) {
+        try {
+            const response = await signin(data)
+            Cookies.set("token", response.data.token, {expires: 1})
+            console.log(response)
+        }
+        catch (erro) {
+            console.log(erro)
+        }
     }
 
     async function signupSubmit(data) {
@@ -63,11 +75,11 @@ export function Authentication() {
                     <Input
                         type="password"
                         placeholder="Senha"
-                        name="password"
+                        name="senha"
                         register={registersignin}
                     />
-                    {errorsSignin.password && (
-                        <ErrorSpan>{errorsSignin.password.message}</ErrorSpan>)}
+                    {errorsSignin.senha && (
+                        <ErrorSpan>{errorsSignin.senha.message}</ErrorSpan>)}
 
                     <Button type="submit" text="Entrar" />
                 </form>
@@ -109,8 +121,8 @@ export function Authentication() {
                         name="senha"
                         register={registersignup}
                     />
-                    {errorsSignup.password && (
-                        <ErrorSpan>{errorsSignup.password.message}</ErrorSpan>)}
+                    {errorsSignup.senha && (
+                        <ErrorSpan>{errorsSignup.senha.message}</ErrorSpan>)}
 
                     <Input
                         type="password"
