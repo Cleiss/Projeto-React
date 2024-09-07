@@ -3,7 +3,7 @@ import { Card } from "../../Components/Card/Card.jsx"
 import { HomeBody, HomeHeader } from "./HomeStyled.jsx"
 import { getNews, getTopNews } from "../../Services/postsServices.js"
 import { useEffect, useState } from "react" //atualiza o estado inicial. neste caso, atualizará 'news'.
-
+import Cookies from "js-cookie"
 export function Home() {
 
     const [news, setNews] = useState([]) //em useState([]), 'news' inicia como um array vazio. 'setNews' é uma função que altera o estado de 'news'.

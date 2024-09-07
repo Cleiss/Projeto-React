@@ -1,12 +1,12 @@
 import { Link, Outlet, useNavigate } from "react-router-dom"
 import logo from "../../images/LogoBN.png"
-import { Nav, ImgLogo, InputSearch, ErrorSpan } from "../Navbar/NavbarStyled.jsx"
+import { Nav, ImgLogo, InputSearch, ErrorSpan, UserLoggedSpace } from "../Navbar/NavbarStyled.jsx"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "../../Components/Button/Button";
 import { searchSchema } from "../../schemas/searchSchema.js"
 import { userLogged } from "../../Services/userServices.js"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Cookies from "js-cookie"
 
 
@@ -23,6 +23,9 @@ export function Navbar() {
     })
 
     const navigate = useNavigate()
+    const [user, setUser] = useState({
+
+    })
 
     function onSearch(data) {
         const { title } = data
@@ -33,17 +36,23 @@ export function Navbar() {
     async function finduserLogged() {
         try {
             const response = await userLogged()
-            console.log(response)
+            setUser(response.data)
+            console.log(response.data)
         }
         catch (erro) {
             console.log(erro.message)
         }
     }
 
+    function signout () {
+
+    }
+
     useEffect(() => {
-        if (Cookies.get("token")) 
+        if (Cookies.get("token")) {
             finduserLogged()
-    })
+        }
+    }, [])
 
     /* input precisa estar dentro de um form */
     /* '...' = spread operator (pega vários dados): '...register' */
@@ -66,10 +75,16 @@ export function Navbar() {
                     <ImgLogo src={logo} alt="logo BN" />
                 </Link>
 
+                {user ? (
+                    <UserLoggedSpace>
+                        <h2>{user.nome}</h2>
+                        <i className="bi bi-box-arrow-right" onClick={signout}></i>
+                    </UserLoggedSpace>
+                ) : (
+                    <Link to='/entrar'>
+                        <Button text="Entrar" />
+                    </Link>)}
 
-                <Link to='/entrar'>
-                    <Button text="Entrar" />
-                </Link>
             </Nav>
             {errors.title && <ErrorSpan>{errors.title.message}</ErrorSpan>}
             <Outlet />

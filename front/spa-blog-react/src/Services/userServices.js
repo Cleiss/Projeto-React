@@ -21,11 +21,10 @@ export function signin(data) {
 }
 
 export function userLogged() {
-    const response = axios.get(`${baseURL}/user/findId/`, {
+    const response = axios.get(`${baseURL}/user/:id`, {
         headers: {
             Authorization: `Bearer ${Cookies.get("token")}`,
         }
     })
-
-    return response.data.user
+    return response
 }

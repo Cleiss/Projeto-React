@@ -1,4 +1,5 @@
 import userService from "../services/user.service.js"
+import {generateToken} from "../services/auth.service.js"
 
 
 const createUser = async (req, res) => {
@@ -18,19 +19,15 @@ const createUser = async (req, res) => {
             return res.status(400).send({ message: "erro ao criar usuário" })
         }
 
-        res.status(201).send({
+        const token = generateToken(user.id);
 
-            user: {
-                id: user._id,
-                nome,
-                username,
-                email,
-                senha,
-                foto,
-                background
-            },
+        res.status(201).send({
+            token,
             message: "Usuário criado com sucesso!"
         })
+
+        //console.log(token)
+
     }
     catch (erro) {
         res.status(500).send({ message: erro })
@@ -60,6 +57,8 @@ const findIdUser = async (req, res) => {
         const id = req.id /*valor vem do middleware (assim não precisa consultar o bd)*/
 
         const usuario = req.user /*valor vem do middleware (assim não precisa consultar o bd)*/
+
+        //console.log(`testando o user do controller ${usuario}`)
 
         res.send(usuario)
     }

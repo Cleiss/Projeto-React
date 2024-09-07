@@ -23,5 +23,5 @@ app.use('/news', newsRouter)
 app.use('/doc', swaggerRouter)
 
 app.listen(port, () => {
-    console.log('Servidor aberto, aguardando MongoDB...')
+    console.log('Servidor aberto, aguardando conexão com o banco de dados...')
 })

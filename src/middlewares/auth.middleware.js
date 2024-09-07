@@ -38,6 +38,8 @@ const authMiddleware = (req, res, next) => {
 
             req.userId = user.id
 
+            //console.log(`id ${req.userId} ou ${user.id} está sendo enviado`)
+
             return next()
         })
 
