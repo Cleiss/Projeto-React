@@ -8,6 +8,7 @@ import { searchSchema } from "../../schemas/searchSchema.js"
 import { userLogged } from "../../Services/userServices.js"
 import { useEffect, useState } from "react"
 import Cookies from "js-cookie"
+import { Profile } from "../../Pages/UserProfile/Profile.jsx"
 
 
 export function Navbar() {
@@ -37,15 +38,16 @@ export function Navbar() {
         try {
             const response = await userLogged()
             setUser(response.data)
-            console.log(response.data)
         }
         catch (erro) {
             console.log(erro.message)
         }
     }
 
-    function signout () {
-
+    function signout() {
+        Cookies.remove("token")
+        setUser(undefined)
+        navigate("/")
     }
 
     useEffect(() => {
@@ -75,18 +77,20 @@ export function Navbar() {
                     <ImgLogo src={logo} alt="logo BN" />
                 </Link>
 
-                {user ? (
-                    <UserLoggedSpace>
-                        <h2>{user.nome}</h2>
-                        <i className="bi bi-box-arrow-right" onClick={signout}></i>
-                    </UserLoggedSpace>
-                ) : (
+                {!user ? (
                     <Link to='/entrar'>
                         <Button text="Entrar" />
-                    </Link>)}
-
+                    </Link>
+                ):
+                    (<UserLoggedSpace>
+                        <h2>{user.nome}</h2>
+                        <i className="bi bi-box-arrow-right" onClick={signout}></i>
+                    </UserLoggedSpace>)
+                }
             </Nav>
+
             {errors.title && <ErrorSpan>{errors.title.message}</ErrorSpan>}
+
             <Outlet />
         </>
     )

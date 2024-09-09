@@ -7,6 +7,7 @@ import { Home } from './Pages/Home/Home'
 import { Search } from './Pages/Search/Search'
 import { GlobalStyled } from './GlobalStyled.jsx'
 import { Authentication } from './Pages/Authenticate/Auth.jsx'
+import { Profile } from './Pages/UserProfile/Profile.jsx'
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
   {
     path: "/entrar",
     element: <Authentication />
+  },
+
+  {
+    path: "/profile",
+    element: <Profile />
   }
 ])
 

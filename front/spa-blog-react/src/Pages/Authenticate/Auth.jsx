@@ -41,7 +41,7 @@ export function Authentication() {
         try {
             const response = await signin(data)
             Cookies.set("token", response.data.token, {expires: 1})
-            navigate("/")
+            navigate("/profile")
         }
         catch (erro) {
             console.log(erro)
@@ -52,7 +52,7 @@ export function Authentication() {
         try {
             const response = await signup(data)
             Cookies.set("token", response.data.token, {expires: 1})
-            navigate("/")
+            navigate("/profile")
             //console.log(response)
         }
         catch (erro) {
