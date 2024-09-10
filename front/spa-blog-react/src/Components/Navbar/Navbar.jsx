@@ -47,7 +47,7 @@ export function Navbar() {
     function signout() {
         Cookies.remove("token")
         setUser(undefined)
-        navigate("/")
+        navigate("/entrar")
     }
 
     useEffect(() => {
@@ -77,15 +77,17 @@ export function Navbar() {
                     <ImgLogo src={logo} alt="logo BN" />
                 </Link>
 
-                {!user ? (
-                    <Link to='/entrar'>
-                        <Button text="Entrar" />
-                    </Link>
-                ):
-                    (<UserLoggedSpace>
+                {user ? (
+                    <UserLoggedSpace>
                         <h2>{user.nome}</h2>
                         <i className="bi bi-box-arrow-right" onClick={signout}></i>
-                    </UserLoggedSpace>)
+                    </UserLoggedSpace>
+                ) :
+                    (
+                        <Link to='/entrar'>
+                            <Button text="Entrar" />
+                        </Link>
+                    )
                 }
             </Nav>
 
