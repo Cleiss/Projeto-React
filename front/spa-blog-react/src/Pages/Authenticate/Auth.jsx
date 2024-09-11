@@ -41,7 +41,7 @@ export function Authentication() {
         try {
             const response = await signin(data)
             Cookies.set("token", response.data.token, {expires: 1})
-            navigate("/profile")
+            navigate("/")
         }
         catch (erro) {
             console.log(erro)

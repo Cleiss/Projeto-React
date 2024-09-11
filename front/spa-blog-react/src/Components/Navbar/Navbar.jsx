@@ -6,8 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "../../Components/Button/Button";
 import { searchSchema } from "../../schemas/searchSchema.js"
 import { userLogged } from "../../Services/userServices.js"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Cookies from "js-cookie"
+import { UserContext } from "../../Context/UserContext.jsx"
 import { Profile } from "../../Pages/UserProfile/Profile.jsx"
 
 
@@ -24,9 +25,7 @@ export function Navbar() {
     })
 
     const navigate = useNavigate()
-    const [user, setUser] = useState({
-
-    })
+    const {user, setUser} = useContext(UserContext)
 
     function onSearch(data) {
         const { title } = data
@@ -47,7 +46,7 @@ export function Navbar() {
     function signout() {
         Cookies.remove("token")
         setUser(undefined)
-        navigate("/entrar")
+        navigate("/")
     }
 
     useEffect(() => {

@@ -8,6 +8,7 @@ import { Search } from './Pages/Search/Search'
 import { GlobalStyled } from './GlobalStyled.jsx'
 import { Authentication } from './Pages/Authenticate/Auth.jsx'
 import { Profile } from './Pages/UserProfile/Profile.jsx'
+import UserProvider from './Context/UserContext.jsx'
 
 const router = createBrowserRouter([
   {
@@ -45,7 +46,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
     <GlobalStyled />
 
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
 
   </React.StrictMode>,
 ) /* 'App' foi substituído por 'RouterProvider router={router}' devido ao uso do React Router Dom.*/
