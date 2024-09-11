@@ -9,7 +9,6 @@ import { userLogged } from "../../Services/userServices.js"
 import { useContext, useEffect, useState } from "react"
 import Cookies from "js-cookie"
 import { UserContext } from "../../Context/UserContext.jsx"
-import { Profile } from "../../Pages/UserProfile/Profile.jsx"
 
 
 export function Navbar() {
