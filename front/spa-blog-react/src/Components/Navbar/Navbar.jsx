@@ -35,6 +35,7 @@ export function Navbar() {
     async function finduserLogged() {
         try {
             const response = await userLogged()
+            console.log(response.data)
             setUser(response.data)
         }
         catch (erro) {
@@ -75,7 +76,7 @@ export function Navbar() {
                     <ImgLogo src={logo} alt="logo BN" />
                 </Link>
 
-                {user ? (
+                {Cookies.get("token") ? (
                     <UserLoggedSpace>
                         <h2>{user.nome}</h2>
                         <i className="bi bi-box-arrow-right" onClick={signout}></i>
